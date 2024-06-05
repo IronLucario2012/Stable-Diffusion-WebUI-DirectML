@@ -5,13 +5,14 @@
 import os
 
 import launch
+import importlib.metadata
 from packaging import version
 from modules import paths_internal
 
 
 def install():
     try:
-        if not launch.is_installed("onnxruntime-directml") or version.parse("onnxruntime-directml") <= version.parse("1.16.2"):
+        if not launch.is_installed("onnxruntime-directml") or importlib.metadata.version("onnxruntime-directml") <= version.parse("1.16.2"):
             launch.run_pip('install onnxruntime-directml>=1.16.1', "onnxruntime-directml")
     except Exception as e:
             print(e)
